@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost Cat Poster</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: #000;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* 手机端容器，移除冗余边框，改为极简风格 */
+        .poster {
+            width: 85%;
+            max-width: 400px;
+            padding-top: 50px;
+            text-align: left; /* 这种文案左对齐通常更有设计感 */
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            line-height: 0.9;
+            margin-bottom: 30px;
+            letter-spacing: -1px;
+            border-bottom: 15px solid #000;
+            padding-bottom: 10px;
+        }
+
+        .main-text {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        /* 实时时间样式：通过加粗和稍微放大的字体自然融入 */
+        #actual-time {
+            font-weight: 800;
+            display: inline-block;
+            
+        }
+
+        .clues {
+            margin-bottom: 40px;
+        }
+
+        .clues h2 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        .clues p {
+            margin: 5px 0;
+            font-size: 1.1rem;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .clues p::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+        }
+
+        .footer {
+            font-size: 1.4rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-top: 60px;
+            color: #e63946; /* 只有最后的感人台词用红色点缀 */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="poster">
+        <h1>HAVE YOU<br>SEEN MY<br>CAT?</h1>
+
+        <div class="main-text">
+            My cat went missing at <span id="actual-time">...</span> 
+            from Filaretu g. 18, 01208, Vilnius, Lithuania.
+        </div>
+
+        <div class="clues">
+            <h2>Here are some clues:</h2>
+            <p>She likes to stare out the window.</p>
+            <p>She likes to watch her owner fall asleep.</p>
+            <p>She likes containers.</p>
+        </div>
+
+        <div class="footer">
+            If anyone has seen her, please tell her you love her.
+        </div>
+    </div>
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            
+            // 格式化日期和时间
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+
+            const fullTimeString = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+            document.getElementById('actual-time').textContent = fullTimeString;
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime();
+    </script>
+</body>
+</html>
